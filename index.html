@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título Principal con Descripción y Efectos</title>
+    <meta name="description" content="Esta es la descripción de la página principal que contiene casillas con imágenes, títulos y descripciones que enlazan a otras páginas HTML con varios efectos CSS y modo oscuro.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4; /* Fondo claro por defecto */
+            color: #333; /* Texto oscuro por defecto */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1e1e1e; /* Fondo oscuro */
+            color: #f8f8f2; /* Texto claro */
+        }
+
+        .dark-mode .titulo-con-descripcion h1,
+        .dark-mode .casilla h3,
+        .dark-mode .casilla p {
+            color: #f8f8f2;
+        }
+
+        .dark-mode .descripcion-titulo {
+            color: #ccc;
+        }
+
+        .dark-mode .casilla {
+            background-color: #333;
+            border-color: #555;
+            box-shadow: 3px 3px 8px rgba(255, 255, 255, 0.05);
+        }
+
+        .dark-mode .casilla a {
+            background-color: #5c6bc0; /* Un tono de azul más oscuro para el modo oscuro */
+            color: #fff;
+        }
+
+        .dark-mode .casilla a:hover {
+            background-color: #3949ab;
+        }
+
+        .titulo-con-descripcion {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out; /* Animación de entrada */
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: inherit; /* Hereda el color del body */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave al texto */
+        }
+
+        .descripcion-titulo {
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        .contenedor-casillas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 95%; /* Ancho ligeramente mayor */
+            max-width: 1200px;
+        }
+
+        .casilla {
+            border: 1px solid #ddd; /* Borde más claro */
+            padding: 20px; /* Más espacio interior */
+            margin: 15px; /* Más margen entre casillas */
+            width: 320px; /* Ancho ligeramente mayor */
+            text-align: center;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            border-radius: 8px; /* Bordes redondeados */
+            background-color: white; /* Fondo blanco para las casillas */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
+            display: flex; /* Para alinear la imagen y el texto verticalmente si es necesario */
+            flex-direction: column; /* Para apilar la imagen y el texto */
+            align-items: stretch; /* Para que la imagen se estire horizontalmente */
+        }
+
+        .casilla:hover {
+            transform: translateY(-5px); /* Ligeramente hacia arriba al pasar el ratón */
+            box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al pasar el ratón */
+        }
+
+        .casilla-imagen { /* Nueva clase CSS para las imágenes de las casillas */
+            width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+            height: auto; /* Alto automático para mantener la proporción */
+            margin-bottom: 0px; /* Eliminar el margen inferior de la imagen */
+            border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+        }
+
+        .casilla-contenido {
+            padding: 15px; /* Añadir padding para el título y la descripción */
+            text-align: center; /* Centrar el texto dentro del contenido */
+        }
+
+        .casilla h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #555; /* Color de título de casilla */
+            transition: color 0.3s ease;
+        }
+
+        .casilla p {
+            margin-bottom: 15px;
+            color: #666; /* Color de descripción de casilla */
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        .casilla a {
+            display: inline-flex; /* Para alinear icono y texto */
+            align-items: center; /* Centrar verticalmente el icono y el texto */
+            justify-content: center; /* Centrar horizontalmente el icono y el texto */
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px; /* Más padding para el botón */
+            text-decoration: none;
+            border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+            transition: background-color 0.3s ease-in-out; /* Transición para el hover del botón */
+            margin-top: auto; /* Empujar el botón hacia la parte inferior */
+        }
+
+        .casilla a:hover {
+            background-color: #0056b3;
+        }
+
+        .casilla a i {
+            margin-left: 8px; /* Espacio entre el texto y el icono */
+        }
+
+        .dark-mode-switch-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column; /* Cambiado a column */
+            align-items: flex-end; /* Alinea los elementos a la derecha */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        }
+
+        .dark-mode-label {
+            margin-bottom: 5px; /* Añade margen inferior para separar del switch */
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .dark-mode .dark-mode-label {
+            color: #f8f8f2;
+        }
+
+        .dark-mode-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #333;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .dark-mode-switch:before {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #fff;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .dark-mode-switch {
+            background-color: #555;
+        }
+
+        .dark-mode .dark-mode-switch:before {
+            transform: translateX(30px);
+        }
+
+        .hr-con-texto {
+            display: flex;
+            align-items: center;
+            width: 100%; /* Ancho al 100% para llegar a los bordes */
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ccc; /* Color del texto */
+            font-weight: bold; /* Texto en negrita */
+        }
+
+        .hr-con-texto::before,
+        .hr-con-texto::after {
+            content: '';
+            flex-grow: 1;
+            background: #ccc;
+            height: 2px; /* Línea más gruesa */
+            font-size: 0px;
+            line-height: 0px;
+        }
+
+        .hr-con-texto::before {
+            margin-right: 1em;
+        }
+
+        .hr-con-texto::after {
+            margin-left: 1em;
+        }
+
+        .dark-mode .hr-con-texto {
+            color: #555;
+        }
+
+        .dark-mode .hr-con-texto::before,
+        .dark-mode .hr-con-texto::after {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="titulo-con-descripcion">
+        <h1>Título Principal de la Página</h1>
+        <p class="descripcion-titulo">Explora nuestras secciones y descubre contenido interesante.</p>
+    </div>
+
+    <div class="hr-con-texto">Unblockers</div>
+
+    <div class="contenedor-casillas">
+        <div class="casilla">
+            <img src="UNblockers.png" alt="Imagen 1" class="casilla-imagen">
+            <div class="casilla-contenido">
+                <h3>Unblocker Links 2025 <span style="color: red;">(PELIGRO)</span></h3>
+                <p>Aqui una compilacion de unblockers. Tener cuidado al ingrsar a alguno porque pueden haber anuncios raros...</p>
+            </div>
+            <a href="pagina1.html" style="background-color:red;">Abrir<i class="fa-solid fa-key"></i></a>
+        </div>
+
+        <div class="casilla">
+            <img src="UNblockers2.png" alt="Imagen 2" class="casilla-imagen" style="opacity: 0.9;">
+            <div class="casilla-contenido">
+                <h3>Desbloqueador de Unblockers (Proxy)</h3>
+                <p>Un Unblocker para Unblockers, tambien funciona para otras paginas que no tinen seguriadad de la Nasa. Atte Said.</p>
+            </div>
+            <a href="pagina2.html">Abrir Página 2</a>
+        </div>
+
+        <div class="casilla">
+            <img src="imagen3.jpg" alt="Imagen 3" class="casilla-imagen" style="transition: transform 0.2s ease-in-out;">
+            <div class="casilla-contenido">
+                <h3>Título de la Casilla 3</h3>
+                <p>Una descripción más para la tercera casilla. Asegúrate de que sea informativa.</p>
+            </div>
+            <a href="pagina3.html">Abrir Página 3</a>
+        </div>
+
+        <div class="casilla">
+            <img src="imagen4.jpg" alt="Imagen 4" class="casilla-imagen">
+            <div class="casilla-contenido">
+                <h3>Título de la Casilla 4</h3>
+                <p>Otra casilla sin animación de entrada.</p>
+            </div>
+            <a href="pagina4.html">Abrir Página 4</a>
+        </div>
+
+        <div class="casilla">
+            <img src="imagen5.jpg" alt="Imagen 5" class="casilla-imagen">
+            <div class="casilla-contenido">
+                <h3>Título de la Casilla 5</h3>
+                <p>Esta casilla tampoco tiene animación de entrada.</p>
+            </div>
+            <a href="pagina5.html">Abrir Página 5</a>
+        </div>
+    </div>
+
+    <div class="dark-mode-switch-container">
+        <span class="dark-mode-label">Modo Oscuro</span>
+        <label class="dark-mode-switch">
+            <input type="checkbox" id="darkModeToggle" style="display: none;" onchange="toggleDarkMode()">
+            <span></span>
+        </label>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeLabel = document.querySelector('.dark-mode-label');
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeLabel.textContent = isDarkMode ? 'Modo Claro' : 'Modo Oscuro';
+        }
+
+        // Comprobar si el modo oscuro estaba activado previamente (opcional)
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+            darkModeLabel.textContent = 'Modo Claro';
+        }
+
+        // Guardar el estado del modo oscuro al cambiar (opcional)
+        darkModeToggle.addEventListener('change', () => {
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage:setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+
+</body>
+</html>
