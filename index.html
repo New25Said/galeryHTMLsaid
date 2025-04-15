@@ -13,14 +13,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f4f4f4; /* Fondo claro por defecto */
-            color: #333; /* Texto oscuro por defecto */
+            background-color: #f4f4f4;
+            color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body.dark-mode {
-            background-color: #1e1e1e; /* Fondo oscuro */
-            color: #f8f8f2; /* Texto claro */
+            background-color: #1e1e1e;
+            color: #f8f8f2;
         }
 
         .dark-mode .titulo-con-descripcion h1,
@@ -40,7 +40,7 @@
         }
 
         .dark-mode .casilla a {
-            background-color: #5c6bc0; /* Un tono de azul más oscuro para el modo oscuro */
+            background-color: #5c6bc0;
             color: #fff;
         }
 
@@ -51,7 +51,7 @@
         .titulo-con-descripcion {
             text-align: center;
             margin-bottom: 40px;
-            animation: fadeInDown 1s ease-out; /* Animación de entrada */
+            animation: fadeInDown 1s ease-out;
         }
 
         @keyframes fadeInDown {
@@ -68,8 +68,8 @@
         h1 {
             margin-top: 0;
             margin-bottom: 5px;
-            color: inherit; /* Hereda el color del body */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave al texto */
+            color: inherit;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .descripcion-titulo {
@@ -81,67 +81,67 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            width: 95%; /* Ancho ligeramente mayor */
+            width: 95%;
             max-width: 1200px;
         }
 
         .casilla {
-            border: 1px solid #ddd; /* Borde más claro */
-            padding: 20px; /* Más espacio interior */
-            margin: 15px; /* Más margen entre casillas */
-            width: 320px; /* Ancho ligeramente mayor */
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px;
+            width: 320px;
             text-align: center;
-            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
-            border-radius: 8px; /* Bordes redondeados */
-            background-color: white; /* Fondo blanco para las casillas */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
-            display: flex; /* Para alinear la imagen y el texto verticalmente si es necesario */
-            flex-direction: column; /* Para apilar la imagen y el texto */
-            align-items: stretch; /* Para que la imagen se estire horizontalmente */
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            background-color: white;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
         }
 
         .casilla:hover {
-            transform: translateY(-5px); /* Ligeramente hacia arriba al pasar el ratón */
-            box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al pasar el ratón */
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .casilla-imagen { /* Nueva clase CSS para las imágenes de las casillas */
-            width: 100%; /* La imagen ocupa todo el ancho del contenedor */
-            height: auto; /* Alto automático para mantener la proporción */
-            margin-bottom: 0px; /* Eliminar el margen inferior de la imagen */
-            border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+        .casilla-imagen {
+            width: 100%;
+            height: auto;
+            margin-bottom: 0px;
+            border-radius: 0;
         }
 
         .casilla-contenido {
-            padding: 15px; /* Añadir padding para el título y la descripción */
-            text-align: center; /* Centrar el texto dentro del contenido */
+            padding: 15px;
+            text-align: center;
         }
 
         .casilla h3 {
             margin-top: 0;
             margin-bottom: 8px;
-            color: #555; /* Color de título de casilla */
+            color: #555;
             transition: color 0.3s ease;
         }
 
         .casilla p {
             margin-bottom: 15px;
-            color: #666; /* Color de descripción de casilla */
+            color: #666;
             font-size: 0.95em;
             transition: color 0.3s ease;
         }
 
         .casilla a {
-            display: inline-flex; /* Para alinear icono y texto */
-            align-items: center; /* Centrar verticalmente el icono y el texto */
-            justify-content: center; /* Centrar horizontalmente el icono y el texto */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: #007bff;
             color: white;
-            padding: 12px 20px; /* Más padding para el botón */
+            padding: 12px 20px;
             text-decoration: none;
-            border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
-            transition: background-color 0.3s ease-in-out; /* Transición para el hover del botón */
-            margin-top: auto; /* Empujar el botón hacia la parte inferior */
+            border-radius: 0 0 8px 8px;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: auto;
         }
 
         .casilla a:hover {
@@ -149,7 +149,7 @@
         }
 
         .casilla a i {
-            margin-left: 8px; /* Espacio entre el texto y el icono */
+            margin-left: 8px;
         }
 
         .dark-mode-switch-container {
@@ -157,13 +157,13 @@
             bottom: 20px;
             right: 20px;
             display: flex;
-            flex-direction: column; /* Cambiado a column */
-            align-items: flex-end; /* Alinea los elementos a la derecha */
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 1000;
         }
 
         .dark-mode-label {
-            margin-bottom: 5px; /* Añade margen inferior para separar del switch */
+            margin-bottom: 5px;
             color: #333;
             transition: color 0.3s ease;
         }
@@ -205,11 +205,11 @@
         .hr-con-texto {
             display: flex;
             align-items: center;
-            width: 100%; /* Ancho al 100% para llegar a los bordes */
+            width: 100%;
             margin-bottom: 20px;
             text-align: center;
-            color: #ccc; /* Color del texto */
-            font-weight: bold; /* Texto en negrita */
+            color: #ccc;
+            font-weight: bold;
         }
 
         .hr-con-texto::before,
@@ -217,7 +217,7 @@
             content: '';
             flex-grow: 1;
             background: #ccc;
-            height: 2px; /* Línea más gruesa */
+            height: 2px;
             font-size: 0px;
             line-height: 0px;
         }
@@ -314,19 +314,17 @@
             darkModeLabel.textContent = isDarkMode ? 'Modo Claro' : 'Modo Oscuro';
         }
 
-        // Comprobar si el modo oscuro estaba activado previamente (opcional)
         if (localStorage.getItem('darkMode') === 'enabled') {
             document.body.classList.add('dark-mode');
             darkModeToggle.checked = true;
             darkModeLabel.textContent = 'Modo Claro';
         }
 
-        // Guardar el estado del modo oscuro al cambiar (opcional)
         darkModeToggle.addEventListener('change', () => {
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('darkMode', 'enabled');
             } else {
-                localStorage:setItem('darkMode', 'disabled');
+                localStorage.setItem('darkMode', 'disabled');
             }
         });
     </script>

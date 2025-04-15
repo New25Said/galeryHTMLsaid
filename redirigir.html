@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirigiendo a about:blank</title>
+</head>
+<body>
+  <p>Redirigiendo a página segura...</p>
+
+  <script>
+    // Asegúrate de que "bloqueado.html" (el archivo con todo tu contenido) esté en la misma carpeta
+    fetch('indefacts.html')
+      .then(res => res.text())
+      .then(html => {
+        const win = window.open('about:blank', '_blank');
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+      })
+      .catch(err => {
+        console.error('Error cargando bloqueado.html:', err);
+        alert("No se pudo cargar la página.");
+      });
+  </script>
+</body>
+</html>
