@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blocked Page</title>
+    <link rel="stylesheet" href="style.css" id="theme-stylesheet">
+    <link rel="icon" type="image/png" href="https://www.pps.net/cms/lib/OR01913224/Centricity/Domain/57/securly-180x180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Underdog&family=Bungee+Spice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Outfit&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght,YTLC@6..12,200..1000,540&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilo para la fuente Underdog */
+        .underdog-font {
+            font-family: 'Underdog', cursive;
+        }
+
+        /* Estilo para la fuente Bungee Spice */
+        .bungee-spice-font {
+            font-family: 'Bungee Spice', cursive;
+        }
+        .kosugi-maru-font {
+            font-family: 'Kosugi Maru', cursive;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .search-container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .title {
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .title:hover {
+            transform: scale(1.1);
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Nunito Sans';
+        }
+
+        .button-bit {
+            padding: 11px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #5fac59;
+            color: white;
+            cursor: pointer;
+            border-radius: 100px;
+            transition: background-color 1s ease;
+            transition: transform 0.3s ease, background-color 0.1s ease, color 0.6s ease;
+            font-family: 'Quicksand';
+        }
+
+        .button-bit:hover {
+            transform: scale(1.1);
+            background-color: #48954e;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+            transition: color 0.3s ease;
+        }
+
+        .fullscreen-btn, .custom-button, .galery-btn {
+            position: absolute;
+            padding: 10px 17px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 16px;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+            text-decoration: none; /* Para quitar el subrayado del enlace */
+            font-family: 'Outfit';
+        }
+
+        .fullscreen-btn:hover, .custom-button:hover, .galery-btn:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+
+        .fullscreen-btn {
+            top: 10px;
+            right: 10px;
+        }
+
+        .custom-button {
+            top: 60px;
+            right: 10px;
+        }
+        .galery-btn{
+            top: 110px;
+            right: 10px;
+            background-color: #a200ff;
+        }
+        .galery-btn:hover {
+            background-color: #6a00b3;
+        }
+
+        /* Estilos para el iframe */
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+        }
+
+        .theme-switch-container {
+            position: fixed;
+            top: 20px; /* Cambiado de bottom a top */
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #6a3582; /* Dark theme switch on color */
+        }
+
+        input:focus + .slider {
+    box-shadow: 0 0 5px 2px #3e2e55; /* Agrandado el radio y añadido un spread radius */
+}
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .theme-label {
+            margin-left: 10px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #b9b9b9;
+        }
+
+        body.dark-theme .search-container {
+            background-color: #2e2e2e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-theme .title {
+            color: #b9b9b9;
+        }
+
+        body.dark-theme input[type="text"] {
+            border-color: #7c7c7c;
+            background-color: #000000;
+            color: #b9b9b9;
+        }
+
+        body.dark-theme button {
+            background-color: #353f35;
+            color: #b9b9b9;
+        }
+
+        body.dark-theme button:hover {
+            background-color: #1a3f1c;
+        }
+
+        body.dark-theme .fullscreen-btn,
+        body.dark-theme .custom-button,
+        body.dark-theme .galery-btn {
+            background-color: #2e4155;
+            color: #b9b9b9;
+        }
+
+        body.dark-theme .fullscreen-btn:hover,
+        body.dark-theme .custom-button:hover,
+        body.dark-theme .galery-btn:hover {
+            background-color: #002e5f;
+        }
+
+        body.dark-theme iframe {
+            border-color: #555;
+        }
+
+        body.dark-theme #error-message {
+            color: #ff6666;
+        }
+
+        body.dark-theme .theme-label {
+            color: #b9b9b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <h1 class="title" href="https://google.com"> <span class="underdog-font">Sa1xp Unblocker</span> <span class="bungee-spice-font">V2</span></h1>
+        <p class="p"> Ingresa la URL o el nombre de una página para cargarla:</p>
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Ejemplo: https://www.ejemplo.com" required>
+            <button class="button-bit"   type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <button class="fullscreen-btn" onclick="toggleFullScreen()">Pantalla Completa</button>
+    <button class="custom-button" id="customButton">Google Unblocker</button>
+    <a href="game_gallery.html" class="galery-btn">Game Galery Links</a>
+    <div class="theme-switch-container">
+        <label class="theme-switch">
+            <input type="checkbox" id="themeCheckbox">
+            <span class="slider round"></span>
+        </label>
+        <span class="theme-label" id="themeLabelText">Tema Oscuro</span>
+    </div>
+
+    <iframe id="iframe" frameborder="0"></iframe>
+
+    <div id="error-message">
+        Lo sentimos, no se pudo cargar la URL proporcionada. Puede que el sitio esté bloqueado para carga en iframe.
+    </div>
+
+    <script>
+        const predefinedUrl = "https://example.com";
+        const themeStylesheet = document.getElementById('theme-stylesheet');
+        const themeCheckbox = document.getElementById('themeCheckbox');
+        const themeLabelText = document.getElementById('themeLabelText');
+        const body = document.body;
+        let currentTheme = 'light'; // Tema por defecto
+
+        // Función para cambiar el tema
+        function toggleTheme() {
+            if (themeCheckbox.checked) {
+                currentTheme = 'dark';
+                body.classList.add('dark-theme');
+                themeLabelText.textContent = 'Tema Claro';
+            } else {
+                currentTheme = 'light';
+                body.classList.remove('dark-theme');
+                themeLabelText.textContent = 'Tema Oscuro';
+            }
+            // Guardar el tema (opcional)
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        // Evento para el formulario de búsqueda
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let query = document.getElementById("searchInput").value.trim();
+
+            if (!query) {
+                alert("Por favor ingresa una URL.");
+                return;
+            }
+
+            // Validar URL (si no tiene https://, agregarlo automáticamente)
+            if (!/^https?:\/\//i.test(query)) {
+                query = "https://" + query;
+            }
+
+            // Establecer la URL del iframe
+            const iframe = document.getElementById("iframe");
+            iframe.src = query;
+
+            // Mostrar el iframe y ocultar el mensaje de error si todo va bien
+            iframe.onload = function() {
+                document.getElementById("error-message").style.display = "none";
+            };
+
+            // Mostrar el mensaje de error si no se puede cargar la URL
+            iframe.onerror = function() {
+                document.getElementById("error-message").style.display = "block";
+            };
+        });
+
+        // Evento para el botón personalizado de Google Unblocker
+        document.getElementById("customButton").addEventListener("click", function() {
+            const input = document.getElementById("searchInput");
+            input.value = predefinedUrl;
+
+            // Simular envío del formulario
+            const event = new Event("submit", { bubbles: true, cancelable: true });
+            document.getElementById("searchForm").dispatchEvent(event);
+        });
+
+        // Evento para el switch de tema
+        themeCheckbox.addEventListener('change', toggleTheme);
+
+        // Función para poner el iframe en pantalla completa
+        function toggleFullScreen() {
+            var iframe = document.getElementById('iframe');
+
+            // Verificar si el iframe está en pantalla completa
+            if (!document.fullscreenElement) {
+                // Solicitar que el iframe entre en pantalla completa
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { // Firefox
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari y Opera
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge
+                    iframe.msRequestFullscreen();
+                }
+            } else {
+                // Si ya está en pantalla completa, salir
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari y Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Comprobar el tema guardado al cargar la página
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            themeCheckbox.checked = true;
+            toggleTheme();
+        }
+    </script>
+
+</body>
+</html>
